@@ -1,0 +1,51 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id "com.google.gms.google-services" // Ensure this is correctly placed
+}
+
+android {
+    namespace = "com.example.readrover.readrover" // Update to match your package name
+    compileSdk = 34 // Update to the latest SDK version
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "com.example.readrover.readrover" // Ensure this is correct
+        minSdkVersion 23 // You can adjust this based on your requirements
+        targetSdk = 34 // Update to the latest SDK version
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug // Add your signing config for release
+        }
+    }
+}
+
+dependencies {
+    // Import the Firebase BoM for version management
+    implementation platform('com.google.firebase:firebase-bom:32.2.0') // Make sure to use a stable BOM version
+
+    // Add Firebase products as needed
+    implementation "com.google.firebase:firebase-analytics" // Firebase Analytics
+    implementation "com.google.firebase:firebase-auth" // Firebase Authentication
+    implementation "com.google.firebase:firebase-database" // Firebase Realtime Database
+
+    // Additional Firebase products can be added here
+}
+
+flutter {
+    source = "../.."
+}
