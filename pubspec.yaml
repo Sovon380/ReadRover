@@ -66,6 +66,21 @@ flutter:
     - assets/la_public_library.jpeg
     - assets/chicago_public_library.jpeg
     - assets/boston_public_library.jpeg
+    - assets/great_gatsby.jpeg
+    - assets/to_kill_a_mocking_bird.jpeg
+    - assets/1984.jpeg
+    - assets/default_book.jpeg
+    - assets/jk_rowling_talk.jpeg
+    - assets/fiction_workshop.png
+    - assets/default_event.jpeg
+    - assets/default_book.jpeg
+    - assets/great_gatsby.jpeg
+    - assets/to_kill_a_mocking_bird.jpeg
+    - assets/1984.jpeg
+    - assets/pride_and_prejudice.jpeg
+    - assets/the_catcher_in_the_rye.jpeg
+    - assets/library_books_icon.png
+  
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
