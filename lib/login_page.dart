@@ -15,6 +15,9 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
 
+  // State variable to track password visibility
+  bool _isPasswordVisible = false;
+
   Future<void> _login() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
@@ -53,7 +56,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Login"), backgroundColor: Colors.blueAccent),
+      appBar: AppBar(
+        title: Text("Login"),
+        backgroundColor: Colors.blueAccent,
+      ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Form(
@@ -61,6 +67,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // Email TextFormField
               TextFormField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
@@ -80,27 +87,53 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               SizedBox(height: 10),
+
+              // Password TextFormField with visibility toggle
               TextFormField(
                 controller: _passwordController,
-                obscureText: true,
+                obscureText: !_isPasswordVisible, // Toggle password visibility
                 decoration: InputDecoration(
                   labelText: "Password",
                   prefixIcon: Icon(Icons.lock),
                   border: OutlineInputBorder(),
+                  // Suffix icon to toggle password visibility
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      // Choose the icon based on _isPasswordVisible state
+                      _isPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {
+                      // Update the state to toggle password visibility
+                      setState(() {
+                        _isPasswordVisible = !_isPasswordVisible;
+                      });
+                    },
+                  ),
                 ),
-                validator: (value) => value == null || value.isEmpty ? "Please enter your password" : null,
+                validator: (value) => value == null || value.isEmpty
+                    ? "Please enter your password"
+                    : null,
               ),
               SizedBox(height: 20),
+
+              // Login Button or Loading Indicator
               _isLoading
                   ? CircularProgressIndicator()
                   : ElevatedButton(
                 onPressed: _login,
                 child: Text("Login"),
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                  backgroundColor: Colors.blueAccent, // Updated from 'primary'
+                  padding:
+                  EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                 ),
               ),
               SizedBox(height: 10),
+
+              // Navigation to Sign Up Page
               TextButton(
                 onPressed: () {
                   Navigator.push(
